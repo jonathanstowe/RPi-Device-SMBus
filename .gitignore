@@ -21,3 +21,4 @@ nytprof.out
 *.so
 .precomp
 *.rev-deps
+Makefile
