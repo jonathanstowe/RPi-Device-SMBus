@@ -158,8 +158,7 @@ struct i2c_rdwr_ioctl_data {
 };
 
 
-static inline __s32 i2c_smbus_access(int file, char read_write, __u8 command, 
-                                     int size, union i2c_smbus_data *data)
+static inline __s32 i2c_smbus_access(int file, char read_write, __u8 command, int size, union i2c_smbus_data *data)
 {
 	struct i2c_smbus_ioctl_data args;
 
@@ -201,8 +200,7 @@ static inline __s32 i2c_smbus_read_byte_data(int file, __u8 command)
 		return 0x0FF & data.byte;
 }
 
-static inline __s32 i2c_smbus_write_byte_data(int file, __u8 command, 
-                                              __u8 value)
+static inline __s32 i2c_smbus_write_byte_data(int file, __u8 command, __u8 value)
 {
 	union i2c_smbus_data data;
 	data.byte = value;
@@ -220,8 +218,7 @@ static inline __s32 i2c_smbus_read_word_data(int file, __u8 command)
 		return 0x0FFFF & data.word;
 }
 
-static inline __s32 i2c_smbus_write_word_data(int file, __u8 command, 
-                                              __u16 value)
+static inline __s32 i2c_smbus_write_word_data(int file, __u8 command, __u16 value)
 {
 	union i2c_smbus_data data;
 	data.word = value;
@@ -242,8 +239,7 @@ static inline __s32 i2c_smbus_process_call(int file, __u8 command, __u16 value)
 
 
 /* Returns the number of read bytes */
-static inline __s32 i2c_smbus_read_block_data(int file, __u8 command, 
-                                              __u8 *values)
+static inline __s32 i2c_smbus_read_block_data(int file, __u8 command, __u8 *values)
 {
 	union i2c_smbus_data data;
 	int i;
@@ -257,8 +253,7 @@ static inline __s32 i2c_smbus_read_block_data(int file, __u8 command,
 	}
 }
 
-static inline __s32 i2c_smbus_write_block_data(int file, __u8 command, 
-                                               __u8 length, __u8 *values)
+static inline __s32 i2c_smbus_write_block_data(int file, __u8 command, __u8 length, __u8 *values)
 {
 	union i2c_smbus_data data;
 	int i;
@@ -275,8 +270,7 @@ static inline __s32 i2c_smbus_write_block_data(int file, __u8 command,
 /* Until kernel 2.6.22, the length is hardcoded to 32 bytes. If you
    ask for less than 32 bytes, your code will only work with kernels
    2.6.23 and later. */
-static inline __s32 i2c_smbus_read_i2c_block_data(int file, __u8 command,
-                                                  __u8 length, __u8 *values)
+static inline __s32 i2c_smbus_read_i2c_block_data(int file, __u8 command, __u8 length, __u8 *values)
 {
 	union i2c_smbus_data data;
 	int i;
@@ -295,8 +289,7 @@ static inline __s32 i2c_smbus_read_i2c_block_data(int file, __u8 command,
 	}
 }
 
-static inline __s32 i2c_smbus_write_i2c_block_data(int file, __u8 command,
-                                               __u8 length, __u8 *values)
+static inline __s32 i2c_smbus_write_i2c_block_data(int file, __u8 command, __u8 length, __u8 *values)
 {
 	union i2c_smbus_data data;
 	int i;
@@ -310,8 +303,7 @@ static inline __s32 i2c_smbus_write_i2c_block_data(int file, __u8 command,
 }
 
 /* Returns the number of read bytes */
-static inline __s32 i2c_smbus_block_process_call(int file, __u8 command,
-                                                 __u8 length, __u8 *values)
+static inline __s32 i2c_smbus_block_process_call(int file, __u8 command, __u8 length, __u8 *values)
 {
 	union i2c_smbus_data data;
 	int i;
