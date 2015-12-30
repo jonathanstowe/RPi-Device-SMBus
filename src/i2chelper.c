@@ -1,12 +1,31 @@
 /*
  *  Can't use the inlined ones without the stubs
  */
+#include <sys/types.h>
+#include <sys/stat.h>
+#include <fcntl.h>
+#include <sys/ioctl.h>
+
+#ifndef NULL
 #define NULL 0
+#endif
 
 #include "i2c-dev.h"
 
-extern __s32 rpi_dev_smbus_access(int file, char read_write, __u8 command, int size, union i2c_smbus_data *data) {
-    return i2c_smbus_access(file, read_write, command, size, data);
+
+/* returns an fd ioctld to the appropriate slave address or a negative number */
+
+extern int rpi_dev_smbus_open(char *filename, int address) {
+	int fd;
+
+	fd = open(filename, O_RDWR);
+
+	if ( fd >= 0 ) {
+		if ( ioctl(fd, I2C_SLAVE, address) < 0 ) {
+			fd = -3;
+		}
+	}
+	return fd;
 }
 
 extern __s32 rpi_dev_smbus_write_quick(int file, __u8 value) {
