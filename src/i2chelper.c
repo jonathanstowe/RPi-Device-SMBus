@@ -17,12 +17,13 @@
 
 extern int rpi_dev_smbus_open(char *filename, int address) {
 	int fd;
+	int ir;
 
 	fd = open(filename, O_RDWR);
 
 	if ( fd >= 0 ) {
-		if ( ioctl(fd, I2C_SLAVE, address) < 0 ) {
-			fd = -3;
+		if ( (ir = ioctl(fd, I2C_SLAVE, address)) < 0 ) {
+			fd = ir;
 		}
 	}
 	return fd;
