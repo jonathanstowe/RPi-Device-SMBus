@@ -16,7 +16,7 @@
       "source" : "git://github.com/jonathanstowe/RPi-Device-SMBus.git"
    },
    "perl" : "6",
-   "build-depends" : [],
+   "build-depends" : [ "LibraryMake" ],
    "auth" : "github:jonathanstowe",
    "source-url" : "git://github.com/jonathanstowe/RPi-Device-SMBus.git",
    "depends" : [
