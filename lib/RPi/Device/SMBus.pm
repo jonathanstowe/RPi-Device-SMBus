@@ -121,7 +121,7 @@ class RPi::Device::SMBus {
     sub rpi_dev_smbus_write_block_data(int32 $file, uint8 $command, uint8 $length, CArray[uint8] $values) returns  int32 is native(HELPER) { * }
 
     multi method write-block-data(Command $command, Block $block) returns Int {
-        my CArray[uint8] $buf = copy-to-carray($block, uint8);
+        my CArray $buf = copy-to-carray($block, uint8);
         rpi_dev_smbus_write_block_data(self!fd, $command, $block.elems, $buf);
     }
 
