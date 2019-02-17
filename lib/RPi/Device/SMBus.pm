@@ -153,7 +153,7 @@ back which are returned as a C<Block>
 
 =end pod
 
-class RPi::Device::SMBus:ver<0.0.1>:auth<github:jonathanstowe> {
+class RPi::Device::SMBus:ver<0.0.3>:auth<github:jonathanstowe>:api<1.0> {
 
     use NativeHelpers::Array;
 
