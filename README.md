@@ -35,7 +35,15 @@ And then edit the ```/etc/modules``` to add the modules by adding:
     i2c-dev 
     i2c-bcm2708
 
+Or for a Raspberry Pi 3
+
+    i2c-dev
+    i2c-bcm2835
+
 And then rebooting.
+
+If you have a more recent raspbian you may alternatively be able to use
+```raspi-config``` where you can turn on ```i2c``` under "Interfacing Options".
 
 Typicaly the i2c device will be ```/dev/i2c-1``` on a Raspberry Pi rev
 B. or v2 or ```/dev/i2c-0``` on older versions.
