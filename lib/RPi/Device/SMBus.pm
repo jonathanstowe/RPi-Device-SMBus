@@ -182,10 +182,9 @@ class RPi::Device::SMBus:ver<0.0.1>:auth<github:jonathanstowe> {
     has Int $!fd;
 
     method !fd( --> Int ) {
-        if not $!fd.defined {
-            $!fd = self!open($!device, $!address);
+        $!fd //= do  {
+            self!open($!device, $!address);
         }
-        $!fd;
     }
 
     sub rpi_dev_smbus_open(Str $file, int32 $address --> int32 ) is native(HELPER) { * }
