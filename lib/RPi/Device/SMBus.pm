@@ -1,4 +1,5 @@
 use v6;
+
 use NativeCall;
 
 =begin pod
@@ -180,16 +181,16 @@ class RPi::Device::SMBus:ver<0.0.1>:auth<github:jonathanstowe> {
 
     has Int $!fd;
 
-    method !fd() returns Int {
+    method !fd( --> Int ) {
         if not $!fd.defined {
             $!fd = self!open($!device, $!address);
         }
         $!fd;
     }
 
-    sub rpi_dev_smbus_open(Str $file, int32 $address) returns int32 is native(HELPER) { * }
+    sub rpi_dev_smbus_open(Str $file, int32 $address --> int32 ) is native(HELPER) { * }
 
-    method !open(Str $file, Int $address ) returns Int {
+    method !open(Str $file, Int $address --> Int ) {
         explicitly-manage($file);
         my Int $fd = rpi_dev_smbus_open($file, $address);
         if $fd < 0 {
@@ -198,58 +199,58 @@ class RPi::Device::SMBus:ver<0.0.1>:auth<github:jonathanstowe> {
         $fd;
     }
 
-    sub rpi_dev_smbus_write_quick(int32 $file, uint8 $value) returns  int32 is native(HELPER) { * }
+    sub rpi_dev_smbus_write_quick(int32 $file, uint8 $value --> int32 ) is native(HELPER) { * }
 
-    method write-quick(Byte $value) returns Int {
+    method write-quick(Byte $value --> Int ) {
         rpi_dev_smbus_write_quick(self!fd, $value);
     }
 
-    sub rpi_dev_smbus_read_byte(int32 $file) returns  int32 is native(HELPER) { * }
+    sub rpi_dev_smbus_read_byte(int32 $file --> int32 ) is native(HELPER) { * }
 
-    method read-byte() returns Int {
+    method read-byte( --> Int ) {
         rpi_dev_smbus_read_byte(self!fd);
     }
 
-    sub rpi_dev_smbus_write_byte(int32 $file, uint8 $value) returns  int32 is native(HELPER) { * }
+    sub rpi_dev_smbus_write_byte(int32 $file, uint8 $value --> int32 ) is native(HELPER) { * }
 
-    method write-byte(Byte $value) returns Int {
+    method write-byte(Byte $value --> Int ) {
         rpi_dev_smbus_write_byte(self!fd, $value);
     }
 
-    sub rpi_dev_smbus_read_byte_data(int32 $file, uint8 $command) returns  int32 is native(HELPER) { * }
+    sub rpi_dev_smbus_read_byte_data(int32 $file, uint8 $command --> int32 ) is native(HELPER) { * }
 
-    method read-byte-data(Command $command) returns Int {
+    method read-byte-data(Command $command --> Int ) {
         rpi_dev_smbus_read_byte_data(self!fd, $command);
     }
 
-    sub rpi_dev_smbus_write_byte_data(int32 $file, uint8 $command, uint8 $value) returns  int32 is native(HELPER) { * }
+    sub rpi_dev_smbus_write_byte_data(int32 $file, uint8 $command, uint8 $value --> int32 ) is native(HELPER) { * }
 
-    method write-byte-data(Command $command, Byte $value) returns Int {
+    method write-byte-data(Command $command, Byte $value --> Int ) {
         rpi_dev_smbus_write_byte_data(self!fd, $command, $value);
     }
 
-    sub rpi_dev_smbus_read_word_data(int32 $file, uint8 $command) returns  int32 is native(HELPER) { * }
+    sub rpi_dev_smbus_read_word_data(int32 $file, uint8 $command --> int32 ) is native(HELPER) { * }
 
-    method read-word-data(Command $command) returns Int {
+    method read-word-data(Command $command --> Int ) {
         rpi_dev_smbus_read_word_data(self!fd, $command);
     }
 
-    sub rpi_dev_smbus_write_word_data(int32 $file, uint8 $command, uint16 $value) returns  int32 is native(HELPER) { * }
+    sub rpi_dev_smbus_write_word_data(int32 $file, uint8 $command, uint16 $value --> int32 ) is native(HELPER) { * }
 
-    method write-word-data(Command $command, Word $value) returns Int {
+    method write-word-data(Command $command, Word $value --> Int ) {
         rpi_dev_smbus_write_word_data(self!fd, $command, $value);
     }
 
-    sub rpi_dev_smbus_process_call(int32 $file, uint8 $command, uint16 $value) returns  int32 is native(HELPER) { * }
+    sub rpi_dev_smbus_process_call(int32 $file, uint8 $command, uint16 $value --> int32 ) is native(HELPER) { * }
 
     # writes a Word and returns a value
-    method process-call(Command $command, Word $value) returns Int {
+    method process-call(Command $command, Word $value --> Int ) {
         rpi_dev_smbus_write_word_data(self!fd, $command, $value);
     }
 
-    sub rpi_dev_smbus_read_block_data(int32 $file, uint8 $command, CArray[uint8] $values) returns  int32 is native(HELPER) { * }
+    sub rpi_dev_smbus_read_block_data(int32 $file, uint8 $command, CArray[uint8] $values --> int32 ) is native(HELPER) { * }
 
-    multi method read-block-data(Command $command) returns Block {
+    multi method read-block-data(Command $command --> Block ) {
         my CArray[uint8] $out-buf = CArray[uint].new;
         $out-buf[BLOCK_MAX + 1] = 0;
 
@@ -265,16 +266,16 @@ class RPi::Device::SMBus:ver<0.0.1>:auth<github:jonathanstowe> {
         @array;
     }
 
-    sub rpi_dev_smbus_write_block_data(int32 $file, uint8 $command, uint8 $length, CArray[uint8] $values) returns  int32 is native(HELPER) { * }
+    sub rpi_dev_smbus_write_block_data(int32 $file, uint8 $command, uint8 $length, CArray[uint8] $values --> int32 ) is native(HELPER) { * }
 
-    multi method write-block-data(Command $command, Block $block) returns Int {
+    multi method write-block-data(Command $command, Block $block --> Int ) {
         my CArray $buf = copy-to-carray($block, uint8);
         rpi_dev_smbus_write_block_data(self!fd, $command, $block.elems, $buf);
     }
 
-    sub rpi_dev_smbus_read_i2c_block_data(int32 $file, uint8 $command, uint8 $length, CArray[uint8] $values) returns  int32 is native(HELPER) { * }
+    sub rpi_dev_smbus_read_i2c_block_data(int32 $file, uint8 $command, uint8 $length, CArray[uint8] $values --> int32 ) is native(HELPER) { * }
 
-    multi method read-i2c-block-data(Command $command, Int $length) returns Block {
+    multi method read-i2c-block-data(Command $command, Int $length --> Block ) {
         my CArray[uint8] $out-buf = CArray[uint].new;
         $out-buf[BLOCK_MAX + 1] = 0;
 
@@ -290,16 +291,16 @@ class RPi::Device::SMBus:ver<0.0.1>:auth<github:jonathanstowe> {
         @array;
     }
 
-    sub rpi_dev_smbus_write_i2c_block_data(int32 $file, uint8 $command, uint8 $length, CArray[uint8] $values) returns  int32 is native(HELPER) { * }
+    sub rpi_dev_smbus_write_i2c_block_data(int32 $file, uint8 $command, uint8 $length, CArray[uint8] $values --> int32 ) is native(HELPER) { * }
 
-    multi method write-i2c-block-data(Command $command, Block $block ) returns Int {
+    multi method write-i2c-block-data(Command $command, Block $block --> Int ) {
         my CArray[uint8] $buf = copy-to-carray($block, uint8);
         rpi_dev_smbus_write_i2c_block_data(self!fd, $command, $block.elems, $buf);
     }
 
-    sub rpi_dev_smbus_block_process_call(int32 $file, uint8 $command, uint8 $length, CArray[uint8] $values) returns  int32 is native(HELPER) { * }
+    sub rpi_dev_smbus_block_process_call(int32 $file, uint8 $command, uint8 $length, CArray[uint8] $values --> int32 ) is native(HELPER) { * }
 
-    multi method block-process-call(Command $command, Block $block) returns Block {
+    multi method block-process-call(Command $command, Block $block --> Block ) {
         my CArray[uint8] $buf = copy-to-carray($block, uint8);
         my $len = rpi_dev_smbus_block_process_call(self!fd, $command, $block.elems, $buf);
         if $len < 0 {
