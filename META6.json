@@ -1,6 +1,6 @@
 {
   "name": "RPi::Device::SMBus",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "auth": "github:jonathanstowe",
   "api": "1.0",
   "description": "SMBus/i2c interface on the Raspberry Pi",
