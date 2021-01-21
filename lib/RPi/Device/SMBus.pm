@@ -158,8 +158,7 @@ other than 32.
 
     method write-i2c-block-data(Command $command, Block $block ) returns Int
 
-This is similiar to C<write-block-data> to the extent that the Perl 6
-interface is identical.
+This is similiar to C<write-block-data> to the extent that the Raku interface is identical.
 
 =head2 method block-process-call
 
@@ -332,4 +331,4 @@ class RPi::Device::SMBus:ver<0.0.4>:auth<github:jonathanstowe>:api<1.0> {
     }
 
 }
-# vim: expandtab shiftwidth=4 ft=perl6
+# vim: expandtab shiftwidth=4 ft=raku

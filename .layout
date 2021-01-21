@@ -21,10 +21,6 @@
       "type": "file"
     },
     {
-      "type": "file",
-      "name": "Build.pm"
-    },
-    {
       "children": [
         {
           "type": "directory",

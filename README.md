@@ -1,10 +1,10 @@
 # RPi::Device::SMBus
 
-i²c on Raspberry Pi fo Perl6
+i²c on Raspberry Pi for Raku
 
 ## Synopsis
 
-```perl6
+```raku
 
     use RPi::Device::SMBus;
 
@@ -65,8 +65,7 @@ be delighted to receive patches for any issues found.
 
 ## Installation
 
-Assuming you have a working Rakudo Perl 6 installation you should be able to
-install this with *zef* :
+Assuming you have a working Rakudo installation you should be able to install this with *zef* :
 
     # From the source directory
    
@@ -92,4 +91,4 @@ This is free software.
 
 Please see the [LICENCE](LICENCE) file in the distribution
 
-© Jonathan Stowe 2015, 2016, 2017
+© Jonathan Stowe 2015 - 2021
