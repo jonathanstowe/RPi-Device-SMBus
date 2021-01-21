@@ -2,6 +2,8 @@
 
 i²c on Raspberry Pi for Raku
 
+![Build Status](https://github.com/jonathanstowe/RPi-Device-SMBus/workflows/CI/badge.svg)
+
 ## Synopsis
 
 ```raku
