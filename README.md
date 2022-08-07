@@ -77,15 +77,11 @@ Assuming you have a working Rakudo installation you should be able to install th
 
     zef install RPi::Device::SMBus
 
+The tests are likely to completely fail on anything but a Raspberry Pi with the i²c configured as above.
+
 ## Support
 
-Suggestions/patches are welcomed via github at:
-
-https://github.com/jonathanstowe/RPi-Device-SMBus/issues
-
-I won't be surprised if there are problems with some devices as I am
-only able to test against a limited number which do not use all the
-API.
+Suggestions/patches are welcomed via [github](https://github.com/jonathanstowe/RPi-Device-SMBus/issues)
 
 ## Licence
 
