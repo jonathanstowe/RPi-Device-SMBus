@@ -1,50 +1,46 @@
 {
-  "name": "RPi::Device::SMBus",
-  "version": "0.0.5",
-  "auth": "github:jonathanstowe",
-  "api": "1.0",
-  "description": "SMBus/i2c interface on the Raspberry Pi",
-  "source-url": "git://github.com/jonathanstowe/RPi-Device-SMBus.git",
-  "support": {
-    "source": "git://github.com/jonathanstowe/RPi-Device-SMBus.git",
-    "bugtracker" : "https://github.com/jonathanstowe/RPi-Device-SMBus/issues"
-  },
-  "perl": "6.*",
-  "raku": "6.*",
-  "resources": [
-    "libraries/i2chelper"
+  "license": "Artistic-2.0",
+  "authors": [
+    "Jonathan Stowe <jns+git@gellyfish.co.uk>"
   ],
-  "depends": {
-     "build" : {
-        "requires" : [
-           "Distribution::Builder::MakeFromJSON:ver<0.6+>"
-        ]
-     },
-     "runtime": {
-        "requires": [
-           "NativeHelpers::Array"
-        ]
-     }
+  "build-depends": [
+  ],
+  "support": {
+    "bugtracker": "https://github.com/jonathanstowe/RPi-Device-SMBus/issues",
+    "source": "git://github.com/jonathanstowe/RPi-Device-SMBus.git"
   },
-  "builder": "Distribution::Builder::MakeFromJSON",
-  "build" : {
-     "src-dir" : "src",
-     "makefile-variables" : {
-        "i2chelper": {"resource": "libraries/i2chelper"}
-     }
-  },
+  "source-url": "git://github.com/jonathanstowe/RPi-Device-SMBus.git",
+  "description": "SMBus/i2c interface on the Raspberry Pi",
   "tags": [
     "RPi",
     "Raspberry Pi",
     "i2c",
     "SMBus"
   ],
-  "license": "Artistic-2.0",
+  "resources": [
+    "libraries/i2chelper"
+  ],
+  "version": "0.0.6",
+  "raku": "6.*",
   "provides": {
     "RPi::Device::SMBus": "lib/RPi/Device/SMBus.pm"
   },
-  "authors": [
-    "Jonathan Stowe <jns+git@gellyfish.co.uk>"
+  "name": "RPi::Device::SMBus",
+  "auth": "zef:jonathanstowe",
+  "meta-version": "1",
+  "test-depends": [
   ],
-  "meta-version": "1"
+  "depends": {
+    "runtime": {
+      "requires": [
+        "NativeHelpers::Array"
+      ]
+    },
+    "build": {
+      "requires": [
+        "Distribution::Builder::MakeFromJSON:ver<0.6+>"
+      ]
+    }
+  },
+  "api": "1.0"
 }
