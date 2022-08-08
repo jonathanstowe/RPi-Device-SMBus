@@ -20,7 +20,7 @@
   "resources": [
     "libraries/i2chelper"
   ],
-  "version": "0.0.6",
+  "version": "0.0.7",
   "raku": "6.*",
   "provides": {
     "RPi::Device::SMBus": "lib/RPi/Device/SMBus.pm"
@@ -41,6 +41,13 @@
         "Distribution::Builder::MakeFromJSON:ver<0.6+>"
       ]
     }
+  },
+  "builder": "Distribution::Builder::MakeFromJSON",
+  "build" : {
+     "src-dir" : "src",
+     "makefile-variables" : {
+        "i2chelper": {"resource": "libraries/i2chelper"}
+     }
   },
   "api": "1.0"
 }

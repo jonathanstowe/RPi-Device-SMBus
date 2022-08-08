@@ -53,10 +53,6 @@
       "purpose": null,
       "children": [
         {
-          "name": "Configure.pl6",
-          "type": "file"
-        },
-        {
           "name": "i2c-dev.h",
           "type": "file"
         },
